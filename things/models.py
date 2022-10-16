@@ -1,4 +1,4 @@
-from django.core.validators import MAxValueValidator, MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 class Thing(models.Model):
