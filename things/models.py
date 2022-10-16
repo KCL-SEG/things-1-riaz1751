@@ -2,12 +2,21 @@ from django.core.validators import RegexValidator
 from django.db import models
 
 class Thing(models.Model):
-    name = models.TextField(
+    name = models.CharField(
         max_length=30,
         unique=True,
-        validators=[RegexValidator(
-            regex=r'^\w{1,}$',
-            message='Name cannot be be empty and must be 30 characters or less'
+        blank=False,
         )])
-    description = models.TextField()
-    quantity = models.IntegerField(default=0)
+    description = models.CharField(
+        max_length=120,
+        blank=True,
+        unique=False
+    )
+    quantity = models.IntegerField(
+        default=0,
+        unique=False,
+        validators=[
+            MaxValueValidator(100),
+            MinValueValidator(1)
+        ]
+    )
